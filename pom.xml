@@ -22,6 +22,7 @@
     <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
     <spring-data-jpa.version>1.11.1.RELEASE</spring-data-jpa.version>
     <junit.version>4.12</junit.version>
+    <jbcrypt.version>0.3m</jbcrypt.version>
   </properties>
 
   <dependencies>
@@ -82,6 +83,13 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>${jbcrypt.version}</version>
     </dependency>
 
   </dependencies>
