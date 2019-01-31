@@ -3,8 +3,5 @@ package taskmanager.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import taskmanager.entity.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-
-    User findByEmail(String email);
-
+public interface TaskOperationsRepository extends JpaRepository<User, Long> {
 }

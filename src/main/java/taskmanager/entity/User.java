@@ -7,6 +7,8 @@ import taskmanager.validator.groups.FullValidationUserGroup;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -43,6 +45,9 @@ public class User {
     private Long rate;
 
     private boolean adminChck = false;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<TaskOperations> taskOperations = new ArrayList<>();
 
     public User() {
     }
@@ -117,6 +122,14 @@ public class User {
 
     public void setAdminChck(boolean adminChck) {
         this.adminChck = adminChck;
+    }
+
+    public List<TaskOperations> getTaskOperations() {
+        return taskOperations;
+    }
+
+    public void setTaskOperations(List<TaskOperations> taskOperations) {
+        this.taskOperations = taskOperations;
     }
 
     @Override

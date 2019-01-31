@@ -4,11 +4,14 @@
 <html>
     <%@include file="/WEB-INF/views/header.jsp" %>
     <body class="p-3 mb-2 bg-white text-dark">
+<c:if test="${user != null}">
+    <h3 class="text-center">Kontroluj swoje zadania.</h3>
 
+</c:if>
+<c:if test="${user == null}">
     <h1 class="text-center">Kontroluj swoje zadania.</h1>
 
-    <%--<a class="btn btn-outline-secondary float-left" href="http://localhost:8080/user/withoutLogin">Wejdź bez logowania</a>--%>
-
+</c:if>
 </body>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </html>

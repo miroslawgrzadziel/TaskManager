@@ -7,25 +7,6 @@
     <%@include file="/WEB-INF/views/header.jsp"%>
 <body class="p-3 mb-2 bg-white text-dark">
 
-<%--<c:if test="${currentUser == null}">--%>
-    <%--<div class="p-3 mb-2 bg-white text-dark">--%>
-        <%--<h3 class="text-center">You have no access!</h3>--%>
-        <%--<p class="text-center">You must sign in</p>--%>
-    <%--</div>--%>
-<%--</c:if>--%>
-
-<%--<c:if test="${currentUser != null}">--%>
-    <%--<table class="table table-striped">--%>
-    <%--<tr>--%>
-    <%--<th>Name</th>--%>
-    <%--<th>Meows</th>--%>
-    <%--</tr>--%>
-    <%--<tr>--%>
-    <%--<td>${currentUser.username}</td>--%>
-    <%--<td><a class="btn btn-dark" href="http://localhost:8080/meow/list/${currentUser.id}">${currentUser.meows.size()}</a></td>--%>
-    <%--</tr>--%>
-    <%--</table>--%>
-    <%--<p></p>--%>
     <table class="table table-striped">
         <tr>
             <th>Imię</th>
@@ -34,21 +15,15 @@
             <th>Stanowisko</th>
         </tr>
         <c:forEach items="${users}" var="user">
-            <c:if test="${currentUser.email != user.email}">
-                <tr>
+            <tr>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.email}</td>
                     <td>${user.position}</td>
-
-                    <%--<td><a class="btn btn-dark" href="http://localhost:8080/meow/list/${user.id}">${user.meows.size()}</a></td>--%>
-                    <%--<td><a class="btn btn-dark" href="http://localhost:8080/home">Send message</a></td>--%>
-                </tr>
-            </c:if>
-        </c:forEach>
+             </tr>
+            </c:forEach>
     </table>
 <a class="btn btn-outline-primary float-left" href="http://localhost:8080/home">Powrót</a>
-<%--</c:if>--%>
 
 </body>
 <%@include file="/WEB-INF/views/footer.jsp"%>
