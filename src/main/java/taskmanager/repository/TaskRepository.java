@@ -1,7 +1,8 @@
 package taskmanager.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import taskmanager.entity.User;
+import taskmanager.entity.Task;
 
-public interface TaskRepository extends JpaRepository<User, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
+
 }

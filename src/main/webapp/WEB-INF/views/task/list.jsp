@@ -35,9 +35,9 @@
     </tr>
     <c:forEach items="${tasks}" var="task">
         <tr>
-            <td>${tasks.subject}</td>
-            <td>${tasks.dateReceived}</td>
-            <td>${tasks.cilent}</td>
+            <td>${task.subject}</td>
+            <td>${task.dateReceived}</td>
+            <td>${task.cilent}</td>
             <%--<td><table class="table table-striped">--%>
         <%--<c:forEach items="${recipe.getComments()}" var="comment">--%>
         <%--<tr>--%>
@@ -50,7 +50,10 @@
             <%--</table></td>--%>
 
                 <%--<td><a class="btn btn-dark" href="http://localhost:8080/meow/list/${user.id}">${user.meows.size()}</a></td>--%>
-                <td><a class="btn btn-outline-secondary" href="http://localhost:8080/home">Edytuj</a></td>
+            <td>
+                <a class="btn btn-outline-danger float-right" href="http://localhost:8080/task/delete/${task.id}">Usuń</a>
+                <a class="btn btn-outline-warning float-right" href="http://localhost:8080/task/edit/${task.id}">Edytuj</a>
+            </td>
         </tr>
     </c:forEach>
 </table>

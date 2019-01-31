@@ -62,7 +62,6 @@ public class UserController {
             model.addAttribute("user", user);
             session.setAttribute("user", user);
             return "index";
-//            return "redirect:" + request.getContextPath() + "login";
         }
     }
 
@@ -99,20 +98,11 @@ public class UserController {
         return "index";
     }
 
-
-//    @GetMapping("/withoutLogin")
-//    public String withoutLogin(HttpServletRequest request){
-//
-//        return "redirect:"+request.getContextPath()+"/user/list";
-//    }
-
-
     @RequestMapping("/list")
     public String showAll(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "user/list";
     }
-
 
     @GetMapping("/edit")
     private String editUser(HttpSession session, Model model) {
@@ -170,8 +160,4 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    //    @GetMapping("/account")
-//    public String showDetails(HttpServletRequest request) {
-//        return "user/account";
-//    }
 }

@@ -2,16 +2,16 @@ package taskmanager.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import taskmanager.entity.User;
+import taskmanager.entity.TaskOperations;
 import taskmanager.repository.TaskOperationsRepository;
 
-public class TaskOperationsConverter implements Converter<String, User> {
+public class TaskOperationsConverter implements Converter<String, TaskOperations> {
 
     @Autowired
     private TaskOperationsRepository taskOperationsRepository;
 
     @Override
-    public User convert(String s) {
+    public TaskOperations convert(String s) {
         return taskOperationsRepository.findOne(Long.parseLong(s));
     }
 }

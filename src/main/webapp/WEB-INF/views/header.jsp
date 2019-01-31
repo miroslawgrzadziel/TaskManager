@@ -15,8 +15,8 @@
                     dane</a>
                 <a class="btn btn-outline-secondary float-left" href="http://localhost:8080/user/list">Lista
                     użytkowników</a>
-                <a class="btn btn-outline-dark float-right" href="http://localhost:8080/home">Lista zadań</a>
-                <a class="btn btn-outline-primary float-right" href="http://localhost:8080/task/edit">Dodaj zadanie</a>
+                <a class="btn btn-outline-dark float-right" href="http://localhost:8080/task/list">Lista zadań</a>
+                <a class="btn btn-outline-primary float-right" href="http://localhost:8080/task/add">Dodaj zadanie</a>
             </p>
             <br>
             <p class="text-left">Zalogowany użytkownik: ${user.getFirstName()}.
