@@ -46,7 +46,7 @@ public class User {
 
     private boolean adminChck = false;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<TaskOperations> taskOperations = new ArrayList<>();
 
     public User() {

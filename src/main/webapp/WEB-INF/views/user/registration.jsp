@@ -19,6 +19,7 @@
     <%--<form:errors path="*"/>--%>
 
     <form:hidden path="id"/>
+    <form:hidden path="adminChck"/>
 
     <form:input path="firstName" placeholder="imię" cssClass="form-input"/>
     <form:errors path="firstName" cssClass="alert alert-danger" element="div"/>

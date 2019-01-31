@@ -48,7 +48,7 @@ public class TaskController {
     @GetMapping("/delete/{id}")
     private String deleteTask(@PathVariable Long id, HttpServletRequest request){
         taskService.deleteTask(id);
-        return "redirect:" +request.getContextPath()+ "/task/list";
+        return "redirect:" + request.getContextPath()+ "/task/list";
     }
 
     @RequestMapping("/list")

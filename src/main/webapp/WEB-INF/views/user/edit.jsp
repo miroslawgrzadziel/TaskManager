@@ -20,6 +20,7 @@
     <%--<form:errors path="*"/>--%>
 
     <form:hidden path="id" value="${user.id}"/>
+    <form:hidden path="adminChck" value="${user.adminChck}"/>
 
     <form:input path="firstName" placeholder="imię" value="${user.firstName}" cssClass="form-input"/>
     <form:errors path="firstName" cssClass="alert alert-danger" element="div"/>

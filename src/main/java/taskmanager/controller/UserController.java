@@ -92,9 +92,9 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession sess) {
+    public String logout(HttpSession session) {
 
-        sess.removeAttribute("user");
+        session.removeAttribute("user");
         return "index";
     }
 
@@ -141,7 +141,6 @@ public class UserController {
         return "index";
     }
 
-
     @GetMapping("/edit/{id}")
     public String add(Model model, @PathVariable Long id) {
         model.addAttribute("user", userRepository.findOne(id));
@@ -149,15 +148,18 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, HttpServletRequest request, HttpSession session) {
         User user = userRepository.findOne(id);
         userRepository.delete(user);
-        return "user/list";
+        User userSess = (User) session.getAttribute("user");
+        if (userSess.getId().equals(user.getId())) {
+            session.removeAttribute("user");
+        }
+        return "redirect:" + request.getContextPath()+ "/user/list";
     }
 
     @ModelAttribute("users")
     public List<User> users() {
         return userRepository.findAll();
     }
-
 }
