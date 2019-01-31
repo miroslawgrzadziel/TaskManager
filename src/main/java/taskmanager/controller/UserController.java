@@ -14,6 +14,7 @@ import taskmanager.validator.groups.FullValidationUserGroup;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.groups.Default;
 import java.util.List;
 
 @Controller
@@ -35,10 +36,11 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@Valid User user,
+    public String registration(@Validated({Default.class, FullValidationUserGroup.class}) User user,
                                BindingResult errors,
                                Model model,
-                               HttpServletRequest request) {
+                               HttpServletRequest request,
+                               HttpSession session) {
 
         if (errors.hasErrors()) {
             return "user/registration";
@@ -56,7 +58,9 @@ public class UserController {
             if (userRepository.findAll().isEmpty()) {
                 user.setAdminChck(true);
             }
-            userService.registerUser(user);
+            userService.saveUser(user);
+            model.addAttribute("user", user);
+            session.setAttribute("user", user);
             return "index";
 //            return "redirect:" + request.getContextPath() + "login";
         }
@@ -74,7 +78,7 @@ public class UserController {
                         @RequestParam String password,
                         HttpSession session,
                         Model model,
-                        @Validated({FullValidationUserGroup.class}) User user,
+                        @Valid User user,
                         BindingResult errors) {
 
         boolean log = userService.loginUser(email, password, session);
@@ -110,15 +114,48 @@ public class UserController {
     }
 
 
-    @GetMapping("/account")
-    public String showDetails(HttpServletRequest request) {
-        return "user/account";
+    @GetMapping("/edit")
+    private String editUser(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "user/edit";
     }
+
+    @PostMapping("/edit")
+    public String editUser(@Validated({Default.class, FullValidationUserGroup.class}) User user,
+                           BindingResult errors,
+                           Model model,
+                           HttpSession session,
+                           HttpServletRequest request) {
+
+        if (errors.hasErrors()) {
+            return "user/edit";
+        }
+
+        try {
+            if (!userRepository.findByEmail(user.getEmail()).getId().equals(user.getId())) {
+                model.addAttribute("userexists", true);
+                return "user/edit";
+            }
+        } catch (NullPointerException e) {
+        }
+
+        if (!user.getPassword().equals(user.getPasswordConfirm())) {
+            model.addAttribute("passwordError", true);
+            return "user/edit";
+        }
+
+        userService.saveUser(user);
+        model.addAttribute("user", user);
+        session.setAttribute("user", user);
+        return "index";
+    }
+
 
     @GetMapping("/edit/{id}")
     public String add(Model model, @PathVariable Long id) {
         model.addAttribute("user", userRepository.findOne(id));
-        return "user/add";
+        return "user/register";
     }
 
     @GetMapping("/delete/{id}")
@@ -132,4 +169,9 @@ public class UserController {
     public List<User> users() {
         return userRepository.findAll();
     }
+
+    //    @GetMapping("/account")
+//    public String showDetails(HttpServletRequest request) {
+//        return "user/account";
+//    }
 }

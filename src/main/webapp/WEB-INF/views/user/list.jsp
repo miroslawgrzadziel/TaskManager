@@ -47,6 +47,7 @@
             </c:if>
         </c:forEach>
     </table>
+<a class="btn btn-outline-primary float-left" href="http://localhost:8080/home">Powrót</a>
 <%--</c:if>--%>
 
 </body>

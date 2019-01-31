@@ -17,11 +17,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(groups = {Default.class, FullValidationUserGroup.class})
+    @NotEmpty(groups = {FullValidationUserGroup.class})
     @Column(length = 50)
     private String firstName;
 
-    @NotEmpty(groups = {Default.class, FullValidationUserGroup.class})
+    @NotEmpty(groups = {FullValidationUserGroup.class})
     @Column(length = 50)
     private String lastName;
 
@@ -29,7 +29,7 @@ public class User {
     @NotEmpty(groups = {Default.class, FullValidationUserGroup.class})
     private String email;
 
-    @NotEmpty(groups = {Default.class, FullValidationUserGroup.class})
+    @NotEmpty(groups = {FullValidationUserGroup.class})
     @Column(length = 100)
     private String position;
 
@@ -39,7 +39,7 @@ public class User {
     @Transient
     private String passwordConfirm;
 
-    @NotNull(groups = {Default.class, FullValidationUserGroup.class})
+    @NotNull(groups = {FullValidationUserGroup.class})
     private Long rate;
 
     private boolean adminChck = false;
