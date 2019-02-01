@@ -3,6 +3,7 @@ package taskmanager.entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="taskmanager_taskOperations")
@@ -15,7 +16,7 @@ public class TaskOperations {
     @NotEmpty
     private String description;
 
-    @NotEmpty
+    @NotNull
     private Integer time;
 
     @ManyToOne
@@ -71,4 +72,5 @@ public class TaskOperations {
     public String toString() {
         return getDescription();
     }
+
 }

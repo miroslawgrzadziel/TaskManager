@@ -4,10 +4,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Tasks</title>
+    <title>Task Operation</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <style>
-        input, select, a {
+        input, select, a, textarea {
             display: block;
             margin:15px 0;
             width: 100%;
@@ -15,17 +15,18 @@
     </style>
 </head>
 <body>
-<form:form method="post" action="${pageContext.request.contextPath}/task/add" modelAttribute="task" cssClass="container col-6">
+<form:form method="post" action="${pageContext.request.contextPath}/taskoperations/add/${taskId}" modelAttribute="taskOperations" cssClass="container col-6">
     <%--<form:errors path="*"/>--%>
 
     <form:hidden path="id"/>
-    <form:hidden path="dateReceived"/>
+    <form:hidden path="user.id" value="${user.id}"/>
+    <form:hidden path="task.id" value="${taskId}"/>
 
-    <form:input path="subject" placeholder="temat/przedmiot zlecenia" cssClass="form-input"/>
-    <form:errors path="subject" cssClass="alert alert-danger" element="div"/>
+    <form:textarea path="description" placeholder="opis działania" cssClass="form-input"/>
+    <form:errors path="description" cssClass="alert alert-danger" element="div"/>
 
-    <form:input path="cilent" placeholder="klient" cssClass="form-input"/>
-    <form:errors path="cilent" cssClass="alert alert-danger" element="div"/>
+    <form:input path="time" placeholder="czas pracy [min]" cssClass="form-input"/>
+    <form:errors path="time" cssClass="alert alert-danger" element="div"/>
 
     <input type = "submit" class="btn btn-outline-success"/>
     <a class="btn btn-outline-primary float-left" href="http://localhost:8080/home">Powrót</a>

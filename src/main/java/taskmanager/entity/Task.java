@@ -25,7 +25,7 @@ public class Task {
     @NotEmpty
     private String cilent;
 
-    @OneToMany(mappedBy = "task", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "task", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<TaskOperations> taskOperations = new ArrayList<>();
 
     public Task() {
