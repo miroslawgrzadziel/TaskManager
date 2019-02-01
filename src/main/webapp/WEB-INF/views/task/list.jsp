@@ -33,9 +33,9 @@
             <td>${taskOperation.description}</td>
             <td>${taskOperation.time}</td>
             <td>${taskOperation.user}</td>
-            <%--<c:if test="${user.equals(taskOperation.user)}">--%>
+            <c:if test="${user.id==taskOperation.user.id}">
             <td><a class="btn btn-outline-danger float-right" href="http://localhost:8080/taskoperations/delete/${taskOperation.id}">Usuń</a></td>
-            <%--</c:if>--%>
+            </c:if>
         </tr>
         </c:forEach>
             </table></td>
