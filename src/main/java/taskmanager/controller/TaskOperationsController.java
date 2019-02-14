@@ -1,5 +1,6 @@
 package taskmanager.controller;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class TaskOperationsController {
 
     @GetMapping("/add/{taskId}")
     public String addTaskOperations(Model model, HttpSession session, @PathVariable Long taskId) {
-        model.addAttribute("taskId",taskId);
+        model.addAttribute("taskId", taskId);
         taskOperationsService.addTaskOperationsGet(model, session);
         return "taskoperations/form";
     }
@@ -48,7 +49,7 @@ public class TaskOperationsController {
             BindingResult errors,
             HttpServletRequest request,
             @PathVariable Long taskId
-    ){
+    ) {
         if (errors.hasErrors()) {
             return "taskoperations/form";
         }
@@ -56,14 +57,29 @@ public class TaskOperationsController {
         return "redirect:" + request.getContextPath() + "/task/list";
     }
 
-    @GetMapping("/edit/{id}")
-    private String editTaskOperations(Model model, @PathVariable Long id) {
-        taskOperationsService.editTaskOperations(model, id);
-        return "taskoperations/form";
+    @GetMapping("/edit/{taskOperationsId}")
+    public String editTaskOperations(Model model, @PathVariable Long taskOperationsId, HttpServletRequest request) {
+        model.addAttribute("taskOperationsId", taskOperationsId);
+        taskOperationsService.editTaskOperations(model, taskOperationsId);
+        return "taskoperations/edit";
+    }
+
+    @PostMapping("/edit/{taskOperationsId}")
+    public String editTaskOperations(
+            @Valid TaskOperations taskOperations,
+            BindingResult errors,
+            HttpServletRequest request,
+            @PathVariable Long taskOperationsId
+    ) {
+        if (errors.hasErrors()) {
+            return "taskoperations/edit";
+        }
+        taskOperationsService.addTaskOperationsPost(taskOperations);
+        return "redirect:" + request.getContextPath() + "/task/list";
     }
 
     @GetMapping("/delete/{id}")
-    private String deleteTaskOperations(@PathVariable Long id, HttpServletRequest request) {
+    public String deleteTaskOperations(@PathVariable Long id, HttpServletRequest request) {
         taskOperationsService.deleteTaskOperations(id);
         return "redirect:" + request.getContextPath() + "/task/list";
     }

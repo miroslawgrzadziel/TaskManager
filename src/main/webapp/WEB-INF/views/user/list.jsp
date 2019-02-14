@@ -15,16 +15,17 @@
         <th>Stanowisko</th>
     </tr>
     <c:if test="${user.adminChck == true}">
-    <c:forEach items="${users}" var="user">
-        <tr>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.email}</td>
-            <td>${user.position}</td>
-            <td><a class="btn btn-outline-danger float-left" href="http://localhost:8080/user/delete/${user.id}">Usuń</a></td>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.email}</td>
+                <td>${user.position}</td>
+                <td><a class="btn btn-outline-danger float-left" href="http://localhost:8080/user/delete/${user.id}">Usuń</a>
+                </td>
 
-        </tr>
-    </c:forEach>
+            </tr>
+        </c:forEach>
     </c:if>
     <c:if test="${user.adminChck != true}">
         <c:forEach items="${users}" var="user">

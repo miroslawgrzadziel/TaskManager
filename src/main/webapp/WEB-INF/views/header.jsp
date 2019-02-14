@@ -21,7 +21,7 @@
         <br>
 
         <p class="text-left">Zalogowany użytkownik: ${user.getFirstName()}.
-                <c:if test="${user.adminChck == true}">(administrator)</c:if>
+            <c:if test="${user.adminChck == true}">(administrator)</c:if>
 
         </c:if>
 

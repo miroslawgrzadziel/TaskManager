@@ -22,11 +22,11 @@ public class TaskController {
     private TaskRepository taskRepository;
 
     @Autowired
-    TaskService taskService;
+    private TaskService taskService;
 
     @GetMapping("/add")
-    public String addTask(Model model, HttpSession session){
-        taskService.addTaskGet(model,session);
+    public String addTask(Model model, HttpSession session) {
+        taskService.addTaskGet(model, session);
         return "task/form";
     }
 
@@ -36,19 +36,19 @@ public class TaskController {
             return "task/form";
         }
         taskService.addTaskPost(task);
-        return "redirect:" +request.getContextPath()+ "/task/list";
+        return "redirect:" + request.getContextPath() + "/task/list";
     }
 
     @GetMapping("/edit/{id}")
-    private String editTask(Model model, @PathVariable Long id){
-        taskService.editTask(model,id);
+    private String editTask(Model model, @PathVariable Long id) {
+        taskService.editTask(model, id);
         return "task/form";
     }
 
     @GetMapping("/delete/{id}")
-    private String deleteTask(@PathVariable Long id, HttpServletRequest request){
+    private String deleteTask(@PathVariable Long id, HttpServletRequest request) {
         taskService.deleteTask(id);
-        return "redirect:" + request.getContextPath()+ "/task/list";
+        return "redirect:" + request.getContextPath() + "/task/list";
     }
 
     @RequestMapping("/list")
@@ -58,7 +58,7 @@ public class TaskController {
     }
 
     @ModelAttribute("tasks")
-    public List<Task> taskList(){
+    public List<Task> taskList() {
         return taskRepository.findAll();
     }
 }
